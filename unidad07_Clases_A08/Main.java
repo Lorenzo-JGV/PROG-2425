@@ -1,33 +1,30 @@
 package unidad07_Clases_A08;
 
-/**
- *
- * @author loren
- */
+import java.util.Scanner;
+import unidad07_Clases_A06.Tiempo_A06;
+
 public class Main {
     public static void main(String[] args) {
-        // Crear un sintonizador con la frecuencia por defecto
-        SintonizadorFM sintonizador = new SintonizadorFM();
-        sintonizador.mostrarFrecuencia();
+        Scanner scanner = new Scanner(System.in);
 
-        // Subir la frecuencia varias veces
-        for (int i = 0; i < 10; i++) {
-            sintonizador.subirFrecuencia();
-            sintonizador.mostrarFrecuencia();
+        System.out.print("Introduce la hora (0-23): ");
+        int hora = scanner.nextInt();
+
+        System.out.print("Introduce los minutos (0-59): ");
+        int minuto = scanner.nextInt();
+
+        System.out.print("Introduce los segundos (0-59): ");
+        int segundo = scanner.nextInt();
+
+        System.out.print("Introduce el número de veces a incrementar: ");
+        int n = scanner.nextInt();
+
+        Tiempo_A06 tiempo = new Tiempo_A06(hora, minuto, segundo);
+
+        System.out.println("Hora inicial: " + tiempo.obtenerTiempoFormato());
+        for (int i = 1; i <= n; i++) {
+            tiempo.incrementarSegundo();
+            System.out.println("Incremento " + i + ": " + tiempo.obtenerTiempoFormato());
         }
-
-        // Bajar la frecuencia varias veces
-        for (int i = 0; i < 10; i++) {
-            sintonizador.bajarFrecuencia();
-            sintonizador.mostrarFrecuencia();
-        }
-
-        // Crear un sintonizador con una frecuencia inicial válida
-        SintonizadorFM sintonizadorInicial = new SintonizadorFM(100.5);
-        sintonizadorInicial.mostrarFrecuencia();
-
-        // Crear un sintonizador con una frecuencia inicial fuera de rango
-        SintonizadorFM sintonizadorInvalido = new SintonizadorFM(120.0);
-        sintonizadorInvalido.mostrarFrecuencia();
     }
 }
