@@ -5,26 +5,31 @@ import unidad07_Clases_A06.Tiempo_A06;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        // Crear un sintonizador con la frecuencia por defecto (80.0 MHz)
+        SintonizadorFM radio1 = new SintonizadorFM();
+        radio1.mostrarFrecuencia();
 
-        System.out.print("Introduce la hora (0-23): ");
-        int hora = scanner.nextInt();
+        // Subir la frecuencia varias veces
+        radio1.subirFrecuencia();
+        radio1.mostrarFrecuencia();
 
-        System.out.print("Introduce los minutos (0-59): ");
-        int minuto = scanner.nextInt();
+        radio1.subirFrecuencia();
+        radio1.mostrarFrecuencia();
 
-        System.out.print("Introduce los segundos (0-59): ");
-        int segundo = scanner.nextInt();
+        // Bajar la frecuencia
+        radio1.bajarFrecuencia();
+        radio1.mostrarFrecuencia();
 
-        System.out.print("Introduce el número de veces a incrementar: ");
-        int n = scanner.nextInt();
+        // Crear un sintonizador con una frecuencia específica
+        SintonizadorFM radio2 = new SintonizadorFM(107.5);
+        radio2.mostrarFrecuencia();
 
-        Tiempo_A06 tiempo = new Tiempo_A06(hora, minuto, segundo);
+        // Probar los límites (pasar de 108 a 80 y de 80 a 108)
+        radio2.subirFrecuencia(); // Debe reiniciar a 80.0
+        radio2.mostrarFrecuencia();
 
-        System.out.println("Hora inicial: " + tiempo.obtenerTiempoFormato());
-        for (int i = 1; i <= n; i++) {
-            tiempo.incrementarSegundo();
-            System.out.println("Incremento " + i + ": " + tiempo.obtenerTiempoFormato());
-        }
+        SintonizadorFM radio3 = new SintonizadorFM(80.0);
+        radio3.bajarFrecuencia(); // Debe ir a 108.0
+        radio3.mostrarFrecuencia();
     }
 }
